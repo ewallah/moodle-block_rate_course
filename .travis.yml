@@ -64,5 +64,5 @@ script:
             moodle-plugin-ci grunt
             php /home/travis/build/moodle/admin/tool/behat/cli/init.php -a="classic"
             moodle-plugin-ci behat --suite="classic" --profile chrome
-            /home/travis/build/moodle/vendor/bin/phpunit vendor/bin/phpunit --colors=always --testsuite tool_dataprivacy_testsuite,tool_policy_testsuite,core_privacy_testsuite
+            /home/travis/build/moodle/vendor/bin/phpunit --colors=always --testsuite tool_dataprivacy_testsuite,tool_policy_testsuite,core_privacy_testsuite
         fi

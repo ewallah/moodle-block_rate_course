@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * External rate course.
  *
  * @package    block_rate_course
  * @copyright  2019 Pierre Duverneix - Fondation UNIT
@@ -25,7 +26,15 @@ defined('MOODLE_INTERNAL') || die;
 
 require_once($CFG->libdir . "/externallib.php");
 
+/**
+ * External rate course.
+ *
+ * @package    block_rate_course
+ * @copyright  2019 Pierre Duverneix - Fondation UNIT
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class block_rate_course_external extends external_api {
+
     /**
      * Describes the parameters for set_status.
      *
@@ -41,6 +50,13 @@ class block_rate_course_external extends external_api {
         );
     }
 
+    /**
+     * Set rating.
+     *
+     * @param int $courseid The id of the course
+     * @param int $rating
+     * @return bool
+     */
     public static function set_rating($courseid, $rating) {
         global $DB, $USER;
 

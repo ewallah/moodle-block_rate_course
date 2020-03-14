@@ -17,8 +17,7 @@
 /**
  * Strings for component 'block_rate_course', language 'en', branch 'MOODLE_20_STABLE'
  *
- * @package    block
- * @subpackage rate_course
+ * @package    block_rate_course
  * @copyright  2009 Jenny Gray
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
@@ -35,6 +34,7 @@ $string['rate_course:addinstance'] = 'Add a new course ratings block';
 $string['rate_course:myaddinstance'] = 'rate Course My screen capability';
 $string['pluginname'] = 'Course ratings';
 $string['courserating'] = 'Course ratings';
+$string['description'] = '';
 
 $string['completed'] = 'Thank you. You have already given this course a rating.';
 $string['giverating'] = 'Give a rating';
@@ -55,3 +55,8 @@ $string['viewreview'] = 'View questionnaire responses';
 $string['customtitle'] = 'Custom title';
 $string['myrating'] = 'My rating';
 $string['rerate'] = 'Rate again';
+
+$string['privacy:metadata:block_rate_course'] = 'A record of course rates added.';
+$string['privacy:metadata:block_rate_course:userid'] = 'The ID of the user that gave a course a reating.';
+$string['privacy:metadata:block_rate_course:tableexplanation'] = 'Rate course block information is stored here.';
+

@@ -15,11 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * This block allows the user to give the course a rating, which
- * is displayed in a custom table (<prefix>_block_rate_course).
+ * The Rate course block
  *
- * @package    block
- * @subpackage rate_course
+ * @package    block_rate_course
  * @copyright  2009 Jenny Gray
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
@@ -34,42 +32,59 @@
 
 defined('MOODLE_INTERNAL') || die;
 
+/**
+ * The Rate course block
+ *
+ * @package    block_rate_course
+ * @copyright  2009 Jenny Gray
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class block_rate_course extends block_list {
+
+    /**
+     * Core function used to initialize the block.
+     */
     public function init() {
         $this->title = get_string('courserating', 'block_rate_course');
-        $config = get_config('block_rate_course');
-        if ($config && $config->customtitle) {
-            $this->title = $config->customtitle;
-        }
     }
 
+    /**
+     * Set the applicable formats for this block to all
+     * @return array
+     */
     public function applicable_formats() {
-        return array('all' => true, 'mod' => false, 'tag' => false, 'my' => false);
+        return ['course' => true, 'course-view' => true];
     }
 
-    public function has_config() {
-        return true; // Config only for review part.
+    /**
+     * All multiple instances of this block
+     * @return bool Returns false
+     */
+    public function instance_allow_multiple() {
+        return false;
     }
 
+    /**
+     * Gets the content for this block
+     * return string
+     */
     public function get_content() {
-        global $CFG, $COURSE, $USER, $DB, $OUTPUT, $PAGE;
+        global $COURSE;
 
         if ($this->content !== null) {
             return $this->content;
         }
 
-        $config = get_config('block_rate_course');
-
         $this->content = new stdClass;
-        $this->content->items = array();
-        $this->content->icons = array();
+        $this->content->items = [];
+        $this->content->icons = [];
 
-        if ($config && $config->description) {
+        $desc = get_string('description', 'block_rate_course');
+        if ($desc != '') {
             $description = '<div class="alert alert-info alert-dismissible fade show" role="alert">';
-            $description .= $config->description;
+            $description .= $desc;
             $description .= '<button type="button" class="close" data-dismiss="alert" aria-label="x">';
             $description .= '<span aria-hidden="true">&times;</span></button></div>';
-
             $this->content->items[] = $description;
         }
 

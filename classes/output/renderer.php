@@ -15,7 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Renderer
  *
+ * @package    block_rate_course
  * @copyright  2019 Pierre Duverneix <pierre.duverneix@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -25,9 +27,17 @@ defined('MOODLE_INTERNAL') || die;
 use plugin_renderer_base;
 use renderable;
 
+/**
+ * Renderer
+ *
+ * @package    block_rate_course
+ * @copyright  2019 Pierre Duverneix <pierre.duverneix@gmail.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class renderer extends plugin_renderer_base {
 
     /**
+     * Rendere rating.
      *
      * @param \templatable $output
      * @return string|boolean
@@ -38,6 +48,7 @@ class renderer extends plugin_renderer_base {
     }
 
     /**
+     * Render rataform.
      *
      * @param \templatable $output
      * @return string|boolean
@@ -46,5 +57,4 @@ class renderer extends plugin_renderer_base {
         $data = $output->export_for_template($this);
         return $this->render_from_template('block_rate_course/rate-form', $data);
     }
-
 }

@@ -15,8 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package    block
- * @subpackage rate_course
+ * @package    block_rate_course
  * @copyright  2009 Jenny Gray
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
@@ -27,40 +26,19 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$capabilities = array(
-
-    'block/rate_course:addinstance' => array(
+$capabilities = [
+    'block/rate_course:addinstance' => [
         'riskbitmask' => RISK_SPAM | RISK_XSS,
-
-        'captype' => 'write',
-        'contextlevel' => CONTEXT_BLOCK,
-        'archetypes' => array(
-            'editingteacher' => CAP_ALLOW,
-            'manager' => CAP_ALLOW
-        ),
-
-        'clonepermissionsfrom' => 'moodle/site:manageblocks'
-    ),
-
-    'block/rate_course:myaddinstance' => array(
-            'riskbitmask' => RISK_SPAM | RISK_XSS,
-
-            'captype' => 'write',
-            'contextlevel' => CONTEXT_BLOCK,
-            'archetypes' => array(
-                    'user' => CAP_ALLOW
-            ),
-    ),
-
-    'block/rate_course:rate' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
-        'archetypes' => array(
+        'archetypes' => ['editingteacher' => CAP_ALLOW, 'manager' => CAP_ALLOW],
+        'clonepermissionsfrom' => 'moodle/site:manageblocks'],
+    'block/rate_course:rate' => [
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_COURSE,
+        'archetypes' => [
             'student' => CAP_ALLOW,
             'teacher' => CAP_ALLOW,
             'editingteacher' => CAP_ALLOW,
             'coursecreator' => CAP_ALLOW,
-            'manager' => CAP_ALLOW
-        )
-    )
-);
+            'manager' => CAP_ALLOW]]];

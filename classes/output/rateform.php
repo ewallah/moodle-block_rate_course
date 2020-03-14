@@ -15,7 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- *
+ * Rate form.
+ * @package    block_rate_course
  * @copyright  2019 Pierre Duverneix <pierre.duverneix@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,21 +28,33 @@ use renderer_base;
 use templatable;
 use stdClass;
 
+/**
+ * Rate form.
+ * @package    block_rate_course
+ * @copyright  2019 Pierre Duverneix <pierre.duverneix@gmail.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class rateform implements renderable, templatable {
 
+    /**
+     * Core function used to initialize the form.
+     * @param int $courseid
+     */
     public function __construct($courseid) {
         $this->courseid = $courseid;
     }
 
+    /**
+     * Private function used to querry the rating.
+     * @param int $courseid
+     */
     private static function get_my_ratting($courseid) {
         global $DB, $USER;
 
-        $myrating = $DB->get_record('block_rate_course', array('course' => $courseid, 'userid' => $USER->id));
-        if ($myrating) {
-            return $myrating->rating;
-        } else {
-            return '';
+        if ($myrating = $DB->get_field('block_rate_course', 'rating', ['course' => $courseid, 'userid' => $USER->id])) {
+            return $myrating;
         }
+        return '';
     }
 
     /**

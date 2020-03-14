@@ -15,7 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Block rate course rating.
  *
+ * @package    block_rate_course
  * @copyright  2019 Pierre Duverneix <pierre.duverneix@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,8 +29,19 @@ use renderer_base;
 use templatable;
 use stdClass;
 
+/**
+ * Block rate course rating.
+ *
+ * @package    block_rate_course
+ * @copyright  2019 Pierre Duverneix <pierre.duverneix@gmail.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class rating implements renderable, templatable {
 
+    /**
+     * Core function used to initialize the rating.
+     * @param int $courseid
+     */
     public function __construct($courseid) {
         $this->courseid = $courseid;
     }
@@ -39,11 +52,8 @@ class rating implements renderable, templatable {
      * @return int  rating.
      */
     protected static function get_rating($courseid) {
-        global $CFG, $DB;
-        $sql = "SELECT AVG(rating) AS avg
-        FROM {block_rate_course}
-        WHERE course = $courseid";
-
+        global $DB;
+        $sql = "SELECT AVG(rating) AS avg FROM {block_rate_course} WHERE course = $courseid";
         $avg = -1;
         if ($avgrec = $DB->get_record_sql($sql)) {
             $avg = $avgrec->avg * 2;  // Double it for half star scores.

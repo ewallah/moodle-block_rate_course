@@ -15,24 +15,36 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Defines External handlers.
+ * Event observer for block rate course
  *
  * @package    block_rate_course
- * @copyright  2009 Jenny Gray
- *
- * @copyright  2019 Pierre Duverneix - Fondation UNIT
+ * @category   test
+ * @copyright  2020 Renaat Debleu <rdebleu@eWallah.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
+defined('MOODLE_INTERNAL') || die();
 
-$functions = array(
-    'block_rate_course_set_rating' => array(
-        'classname'     => 'block_rate_course_external',
-        'methodname'    => 'set_rating',
-        'description'   => 'Set the user rating',
-        'type'          => 'write',
-        'ajax'          => true,
-        'capabilities'  => 'block/rate_course:rate'
-    )
-);
+
+/**
+ * Event observer for block rate course
+ *
+ * @package    block_rate_course
+ * @category   test
+ * @copyright  2020 Renaat Debleu <rdebleu@eWallah.net>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class block_rate_course_observer {
+
+
+    /**
+     * Triggered via course_deleted event.
+     *
+     * @param \core\event\course_deleted $event
+     * @return bool true on success
+     */
+    public static function course_deleted(\core\event\course_deleted $event) {
+        global $DB;
+        return (bool) $DB->delete_records('block_rate_course', ['course' => $event->objectid]);
+    }
+}

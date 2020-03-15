@@ -58,9 +58,7 @@ class restore_rate_course_block_structure_step extends restore_structure_step {
      */
     public function process_item($item) {
         global $DB;
-
         $item['course'] = $this->task->get_courseid();
-        $item['userid'] = $this->task->get_userid();
         $params = $item;
         if ($existing = $DB->get_field('block_rate_course', 'id',
             ['course' => $this->task->get_courseid(), 'userid' => $this->task->get_userid()])) {

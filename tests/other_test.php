@@ -78,6 +78,9 @@ class block_rate_course_other_testcase extends advanced_testcase {
         $user = $dg->create_user();
         $dg->enrol_user($user->id, $course->id);
         $DB->insert_record('block_rate_course', ['course' => $course->id, 'userid' => $user->id, 'rating' => 3]);
+        $user = $dg->create_user();
+        $dg->enrol_user($user->id, $course->id);
+        $DB->insert_record('block_rate_course', ['course' => $course->id, 'userid' => $user->id, 'rating' => 5]);
         $page = new moodle_page();
         $page->set_context(context_course::instance($course->id));
         $page->set_pagelayout('course');
@@ -86,20 +89,30 @@ class block_rate_course_other_testcase extends advanced_testcase {
         $page->blocks->load_blocks();
         $page->blocks->add_block_at_end_of_default_region('rate_course');
         $newcourseid = restore_dbops::create_new_course('Tmp', 'tmp', 1);
-        $bc = new backup_controller(backup::TYPE_1COURSE, $course->id, backup::FORMAT_MOODLE, backup::INTERACTIVE_NO,
-                backup::MODE_IMPORT, $USER->id);
+        $bc = new backup_controller(
+            backup::TYPE_1COURSE,
+            $course->id,
+            backup::FORMAT_MOODLE,
+            backup::INTERACTIVE_NO,
+            backup::MODE_IMPORT,
+            $USER->id);
         $backupid = $bc->get_backupid();
         $bc->execute_plan();
         $bc->destroy();
-        $this->assertEquals(1, $DB->count_records('block_rate_course'));
-        $rc = new restore_controller($backupid, $newcourseid, backup::INTERACTIVE_NO,
-                    backup::MODE_IMPORT, $USER->id, backup::TARGET_CURRENT_ADDING);
+        $this->assertEquals(2, $DB->count_records('block_rate_course'));
+        $rc = new restore_controller(
+            $backupid,
+            $newcourseid,
+            backup::INTERACTIVE_NO,
+            backup::MODE_IMPORT,
+            $USER->id,
+            backup::TARGET_CURRENT_ADDING);
         $rc->execute_precheck();
         $rc->execute_plan();
         unset($bc);
         $rc->destroy();
         unset($rc);
-        $this->assertEquals(2, $DB->count_records('block_rate_course'));
+        $this->assertEquals(4, $DB->count_records('block_rate_course'));
     }
 
     /**

@@ -75,7 +75,7 @@ class rating implements renderable, templatable {
         $parts = explode('.', (string) $starscount);
         $count = intval($parts[0]);
         $half = isset($parts[1]) ? true : false;
-        $stars = array();
+        $stars = [];
         for ($i = 0; $i < $count; $i++) {
             array_push($stars, $i);
         }

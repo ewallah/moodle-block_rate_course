@@ -26,13 +26,11 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$functions = array(
-    'block_rate_course_set_rating' => array(
+$functions = [
+    'block_rate_course_set_rating' => [
         'classname'     => 'block_rate_course_external',
         'methodname'    => 'set_rating',
         'description'   => 'Set the user rating',
         'type'          => 'write',
         'ajax'          => true,
-        'capabilities'  => 'block/rate_course:rate'
-    )
-);
+        'capabilities'  => 'block/rate_course:rate']];

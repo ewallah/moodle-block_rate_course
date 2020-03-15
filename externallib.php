@@ -43,11 +43,8 @@ class block_rate_course_external extends external_api {
      */
     public static function set_rating_parameters() {
         return new external_function_parameters(
-            array(
-                'courseid' => new external_value(PARAM_INT, 'The course ID'),
-                'rating' => new external_value(PARAM_INT, 'The rating value')
-            )
-        );
+            ['courseid' => new external_value(PARAM_INT, 'The course ID'),
+             'rating' => new external_value(PARAM_INT, 'The rating value')]);
     }
 
     /**
@@ -61,30 +58,22 @@ class block_rate_course_external extends external_api {
         global $DB, $USER;
 
         // Parameters validation.
-        $params = self::validate_parameters(self::set_rating_parameters(),
-            array('courseid' => $courseid, 'rating' => $rating));
+        $params = self::validate_parameters(self::set_rating_parameters(), ['courseid' => $courseid, 'rating' => $rating]);
 
-        $rating = $DB->get_record('block_rate_course', array('userid' => $USER->id, 'course' => $params['courseid']));
-
-        if ($rating) {
+        if ($rating = $DB->get_record('block_rate_course', ['userid' => $USER->id, 'course' => $params['courseid']])) {
             $data = new \stdClass();
             $data->id = $rating->id;
             $data->course = $params['courseid'];
             $data->userid = $USER->id;
             $data->rating = $params['rating'];
             $DB->update_record('block_rate_course', $data);
-
-            return true;
         } else {
-            $data = $DB->insert_record('block_rate_course', array(
+            $DB->insert_record('block_rate_course', [
                 'course' => $params['courseid'],
                 'userid' => $USER->id,
-                'rating' => $params['rating']));
-
-            return true;
+                'rating' => $params['rating']]);
         }
-
-        return false;
+        return true;
     }
 
     /**

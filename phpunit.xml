@@ -39,7 +39,6 @@
                 <directory suffix=".php">.</directory>
                 <exclude>
                     <directory suffix="_test.php">.</directory>
-                    <directory suffix="access.php">.</directory>
                     <directory suffix="version.php">.</directory>
                 </exclude>
             </whitelist>

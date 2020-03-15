@@ -48,13 +48,9 @@ class rateform implements renderable, templatable {
      * Private function used to querry the rating.
      * @param int $courseid
      */
-    private static function get_my_ratting($courseid) {
+    private static function get_my_rating($courseid) {
         global $DB, $USER;
-
-        if ($myrating = $DB->get_field('block_rate_course', 'rating', ['course' => $courseid, 'userid' => $USER->id])) {
-            return $myrating;
-        }
-        return '';
+        return $DB->get_field('block_rate_course', 'rating', ['course' => $courseid, 'userid' => $USER->id]) ?? '';
     }
 
     /**
@@ -64,11 +60,8 @@ class rateform implements renderable, templatable {
      * @return stdClass
      */
     public function export_for_template(renderer_base $output) {
-        $myrating = self::get_my_ratting($this->courseid);
-        $israted = false;
-        if ($myrating) {
-            $israted = true;
-        }
+        $myrating = self::get_my_rating($this->courseid);
+        $israted = $myrating ? true : false;
 
         return [
             'israted' => $israted,

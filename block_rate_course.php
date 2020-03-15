@@ -79,7 +79,7 @@ class block_rate_course extends block_list {
         $this->content->items = [];
         $this->content->icons = [];
 
-        $desc = get_string('description', 'block_rate_course');
+        $desc = get_string('intro', 'block_rate_course');
         if ($desc != '') {
             $description = '<div class="alert alert-info alert-dismissible fade show" role="alert">';
             $description .= $desc;

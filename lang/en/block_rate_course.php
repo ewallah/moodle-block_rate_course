@@ -34,7 +34,6 @@ $string['rate_course:addinstance'] = 'Add a new course ratings block';
 $string['rate_course:myaddinstance'] = 'rate Course My screen capability';
 $string['pluginname'] = 'Course ratings';
 $string['courserating'] = 'Course ratings';
-$string['description'] = '';
 
 $string['completed'] = 'Thank you. You have already given this course a rating.';
 $string['giverating'] = 'Give a rating';

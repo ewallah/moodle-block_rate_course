@@ -24,13 +24,13 @@ Feature: Enable block rate course in a course
     Given I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
     When I add the "Course ratings" block
-    Then I should see "Course rating: 0 stars." in the "Course ratings" "block"
+    Then I should see "Rated by 0 user(s)" in the "Course ratings" "block"
     And I log out
     And I log in as "student1"
     And I am on "Course 1" course homepage
-    Then I should see "Course rating: 0 stars." in the "Course ratings" "block"
+    Then I should see "Rated by 0 user(s)" in the "Course ratings" "block"
     And I click on "[data-value='2']" "css_element" in the "Course ratings" "block"
-    Then I should see "Rate again" in the "Course ratings" "block"
+    Then I should see "Submit my rating" in the "Course ratings" "block"
     And I log out
     And I log in as "student2"
     And I am on "Course 1" course homepage
@@ -38,5 +38,5 @@ Feature: Enable block rate course in a course
     And I log out
     And I log in as "teacher1"
     And I am on "Course 1" course homepage
-    Then I should see "Course rating: 3 stars." in the "Course ratings" "block"
+    Then I should see "Rated by 2 user(s)" in the "Course ratings" "block"
     And I log out

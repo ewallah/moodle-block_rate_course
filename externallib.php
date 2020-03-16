@@ -20,6 +20,10 @@
  * @package    block_rate_course
  * @copyright  2019 Pierre Duverneix - Fondation UNIT
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 
 defined('MOODLE_INTERNAL') || die;
@@ -32,6 +36,10 @@ require_once($CFG->libdir . "/externallib.php");
  * @package    block_rate_course
  * @copyright  2019 Pierre Duverneix - Fondation UNIT
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 class block_rate_course_external extends external_api {
 

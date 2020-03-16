@@ -18,9 +18,12 @@
  * Event observer for block rate course
  *
  * @package    block_rate_course
- * @category   test
- * @copyright  2020 Renaat Debleu <rdebleu@eWallah.net>
+ * @copyright  2009 Jenny Gray
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 
 defined('MOODLE_INTERNAL') || die();
@@ -30,9 +33,12 @@ defined('MOODLE_INTERNAL') || die();
  * Event observer for block rate course
  *
  * @package    block_rate_course
- * @category   test
- * @copyright  2020 Renaat Debleu <rdebleu@eWallah.net>
+ * @copyright  2009 Jenny Gray
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 class block_rate_course_observer {
 

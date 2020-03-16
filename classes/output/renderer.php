@@ -20,7 +20,12 @@
  * @package    block_rate_course
  * @copyright  2019 Pierre Duverneix <pierre.duverneix@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
+
 namespace block_rate_course\output;
 defined('MOODLE_INTERNAL') || die;
 
@@ -33,6 +38,10 @@ use renderable;
  * @package    block_rate_course
  * @copyright  2019 Pierre Duverneix <pierre.duverneix@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 class renderer extends plugin_renderer_base {
 

@@ -28,34 +28,28 @@
  * Code was Rewritten for Moodle 3.4 and sup by Pierre Duverneix.
  * @copyright 2019 Pierre Duverneix.
  * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 
-$string['rate_course:addinstance'] = 'Add a new course ratings block';
-$string['rate_course:myaddinstance'] = 'rate Course My screen capability';
-$string['pluginname'] = 'Course ratings';
-$string['courserating'] = 'Course ratings';
-
 $string['completed'] = 'Thank you. You have already given this course a rating.';
+$string['courserating'] = 'Course ratings';
+$string['customtitle'] = 'Custom title';
+$string['editingsitehome'] = 'This block will display ratings on course pages only, and is hidden elsewhere.';
 $string['giverating'] = 'Give a rating';
 $string['intro'] = 'Please indicate how highly you rate this course.';
-$string['submit'] = 'Submit my rating';
+$string['myrating'] = 'My rating';
 $string['noguestuseage'] = 'To rate this course you will need to log in.';
+$string['pluginname'] = 'Course ratings';
+$string['privacy:metadata:block_rate_course'] = 'A record of course rates added.';
+$string['privacy:metadata:block_rate_course:tableexplanation'] = 'Rate course block information is stored here.';
+$string['privacy:metadata:block_rate_course:userid'] = 'The ID of the user that gave a course a reating.';
+$string['rate_course:addinstance'] = 'Add a new course ratings block';
 $string['rate_course:rate'] = 'Give a rating to a course';
 $string['rating_alt0'] = 'Course rating: No ratings given.';
 $string['rating_altnum'] = 'Course rating: {$a} stars.';
 $string['rating_users'] = 'Rated by {$a} user(s)';
-$string['editingsitehome'] = 'This block will display ratings on course pages only, and is hidden elsewhere.';
-
-// Questionnaire integration.
-$string['survey'] = 'What is the questionnaire name?';
-$string['survey_help'] = 'This is the questionnaire module which will be linked to (leave blank to stop link to questionnaire)';
-$string['viewreview'] = 'View questionnaire responses';
-
-$string['customtitle'] = 'Custom title';
-$string['myrating'] = 'My rating';
 $string['rerate'] = 'Rate again';
-
-$string['privacy:metadata:block_rate_course'] = 'A record of course rates added.';
-$string['privacy:metadata:block_rate_course:userid'] = 'The ID of the user that gave a course a reating.';
-$string['privacy:metadata:block_rate_course:tableexplanation'] = 'Rate course block information is stored here.';
-
+$string['submit'] = 'Submit my rating';

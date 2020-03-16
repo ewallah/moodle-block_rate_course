@@ -44,12 +44,11 @@
     </div>
     
     <div id="block_rate_course-myrating-area" class="{{^myrating}}hidden{{/myrating}} mb-3 mt-3">
-        <span>{{# str }} myrating, block_rate_course {{/ str }}</span> :
-        <span id="block_rate_course-myrating">{{{myrating}}}</span>
+        <span>{{# str }} rating_altnum, block_rate_course, <span id="block_rate_course-myrating">{{myrating}}</span> {{/ str }}</span>
     </div>
 
     <a id="block_rate_course-rerate" href="javascript:void(0);">
-        {{# str }} rerate, block_rate_course {{/ str }}
+        {{# str }} submit, block_rate_course {{/ str }}
     </a>
 </div>
 {{#js}}

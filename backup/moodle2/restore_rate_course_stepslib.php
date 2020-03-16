@@ -20,15 +20,24 @@
  * @package    block_rate_course
  * @copyright  2012 Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 
 defined('MOODLE_INTERNAL') || die;
 
 /**
  * Define the complete structure for the backup, with file and id annotations
+ *
  * @package    block_rate_course
  * @copyright  2012 Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 class restore_rate_course_block_structure_step extends restore_structure_step {
 
@@ -59,14 +68,12 @@ class restore_rate_course_block_structure_step extends restore_structure_step {
     public function process_item($item) {
         global $DB;
         $item['course'] = $this->task->get_courseid();
-        $params = $item;
-        if ($existing = $DB->get_field('block_rate_course', 'id',
-            ['course' => $this->task->get_courseid(), 'userid' => $this->task->get_userid()])) {
-            $params['id'] = $existing;
-            $DB->update_record('block_rate_course', $params);
+        if ($existing = $DB->get_field('block_rate_course', 'id', ['course' => $item['course'], 'userid' => $item['userid']])) {
+            $item['id'] = $existing;
+            $DB->update_record('block_rate_course', $item);
         } else {
-            unset($params['id']);
-            $DB->insert_record('block_rate_course', $params);
+            unset($item['id']);
+            $DB->insert_record('block_rate_course', $item);
         }
     }
 }

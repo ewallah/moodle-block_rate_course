@@ -28,12 +28,16 @@
  * Code was Rewritten for Moodle 3.4 and sup by Pierre Duverneix.
  * @copyright  2019 Pierre Duverneix.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU Public License
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version  = 2020041400;
+$plugin->version  = 2020041500;
 $plugin->requires  = 2017111300;
 $plugin->component = 'block_rate_course';
 $plugin->release = '3.7+';

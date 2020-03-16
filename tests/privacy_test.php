@@ -17,9 +17,12 @@
  * Privacy tests for block_rate_course.
  *
  * @package    block_rate_course
- * @category   test
- * @copyright  2020 Renaat Debleu <rdebleu@eWallah.net>
+ * @copyright  2009 Jenny Gray
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 
 defined('MOODLE_INTERNAL') || die();
@@ -27,14 +30,16 @@ defined('MOODLE_INTERNAL') || die();
 use \core_privacy\tests\provider_testcase;
 use \block_rate_course\privacy\provider;
 
-
 /**
  * Unit tests for block_rate_course/classes/privacy/policy
  *
  * @package    block_rate_course
- * @category   test
- * @copyright  2020 Renaat Debleu <rdebleu@eWallah.net>
+ * @copyright  2009 Jenny Gray
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 class block_rate_course_privacy_testcase extends provider_testcase {
 

@@ -20,6 +20,10 @@
  * @package    block_rate_course
  * @copyright  2009 Jenny Gray
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 
 namespace block_rate_course\privacy;
@@ -38,6 +42,10 @@ use core_privacy\local\request\approved_userlist;
  * @package    block_rate_course
  * @copyright  2009 Jenny Gray
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 class provider implements
         \core_privacy\local\metadata\provider,

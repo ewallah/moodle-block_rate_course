@@ -28,6 +28,10 @@
  * Code was Rewritten for Moodle 3.7+ By Renaat Debleu.
  * @copyright 2020 eWallah.net.
  * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 
 defined('MOODLE_INTERNAL') || die();

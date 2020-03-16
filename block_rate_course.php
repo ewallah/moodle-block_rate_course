@@ -28,6 +28,10 @@
  * Code was Rewritten for Moodle 3.4 and sup by Pierre Duverneix.
  * @copyright 2019 Pierre Duverneix.
  * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 
 defined('MOODLE_INTERNAL') || die;
@@ -38,6 +42,10 @@ defined('MOODLE_INTERNAL') || die;
  * @package    block_rate_course
  * @copyright  2009 Jenny Gray
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 class block_rate_course extends block_list {
 
@@ -69,7 +77,7 @@ class block_rate_course extends block_list {
      * return string
      */
     public function get_content() {
-        global $COURSE;
+        global $COURSE, $DB, $USER;
 
         if ($this->content !== null) {
             return $this->content;
@@ -79,25 +87,20 @@ class block_rate_course extends block_list {
         $this->content->items = [];
         $this->content->icons = [];
 
-        $desc = get_string('intro', 'block_rate_course');
-        if ($desc != '') {
+        if ($DB->count_records('block_rate_course', ['course' => $COURSE->id, 'userid' => $USER->id]) === 0) {
             $description = '<div class="alert alert-info alert-dismissible fade show" role="alert">';
-            $description .= $desc;
+            $description .= get_string('intro', 'block_rate_course');
             $description .= '<button type="button" class="close" data-dismiss="alert" aria-label="x">';
             $description .= '<span aria-hidden="true">&times;</span></button></div>';
             $this->content->items[] = $description;
         }
-
         $form = new \block_rate_course\output\rateform($COURSE->id);
         $renderer = $this->page->get_renderer('block_rate_course');
         $this->content->items[] = $renderer->render($form);
-
         $rating = new \block_rate_course\output\rating($COURSE->id);
         $renderer = $this->page->get_renderer('block_rate_course');
-
         // Output current rating.
         $this->content->footer = '<div class="text-center">'.$renderer->render($rating).'</div>';
-
         return $this->content;
     }
 }

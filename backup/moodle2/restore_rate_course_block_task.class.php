@@ -20,6 +20,10 @@
  * @package    block_rate_course
  * @copyright  2012 Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 
 defined('MOODLE_INTERNAL') || die;
@@ -32,6 +36,10 @@ require_once($CFG->dirroot . '/blocks/rate_course/backup/moodle2/restore_rate_co
  * @package    block_rate_course
  * @copyright  2012 Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 class restore_rate_course_block_task extends restore_block_task {
 

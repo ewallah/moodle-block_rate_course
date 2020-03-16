@@ -36,3 +36,15 @@ Todo :
   - rebuild the link to questionnaire option
   - add settings to allow/disable re-rating
   - refresh the global rating of the course after the user rating submission
+
+
+15 March 2020
+-------------
+
+Added privacy compliance
+Added phpunit tests
+Added behat testing
+Added travis support
+Fixed backup - restore
+Fixed Amd grunt (min.js and .map)
+Moved Settings into Language string

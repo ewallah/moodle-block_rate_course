@@ -22,6 +22,10 @@
  * Code was Rewritten for Moodle 2.X By Atar + Plus LTD for Comverse LTD.
  * @copyright &copy; 2011 Comverse LTD.
  * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
+ *
+ * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
+ * @copyright 2020 Renaat debleu <info@eWallah.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 
 defined('MOODLE_INTERNAL') || die();

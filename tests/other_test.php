@@ -109,9 +109,33 @@ class block_rate_course_other_testcase extends advanced_testcase {
             backup::TARGET_CURRENT_ADDING);
         $rc->execute_precheck();
         $rc->execute_plan();
-        unset($bc);
         $rc->destroy();
         unset($rc);
+        unset($bc);
+        $this->assertEquals(4, $DB->count_records('block_rate_course'));
+
+        $bc = new backup_controller(
+            backup::TYPE_1COURSE,
+            $course->id,
+            backup::FORMAT_MOODLE,
+            backup::INTERACTIVE_NO,
+            backup::MODE_IMPORT,
+            $USER->id);
+        $backupid = $bc->get_backupid();
+        $bc->execute_plan();
+        $bc->destroy();
+        $rc = new restore_controller(
+            $backupid,
+            $newcourseid,
+            backup::INTERACTIVE_NO,
+            backup::MODE_IMPORT,
+            $USER->id,
+            backup::TARGET_CURRENT_ADDING);
+        $rc->execute_precheck();
+        $rc->execute_plan();
+        $rc->destroy();
+        unset($rc);
+        unset($bc);
         $this->assertEquals(4, $DB->count_records('block_rate_course'));
     }
 

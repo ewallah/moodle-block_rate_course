@@ -88,6 +88,8 @@ class block_rate_course_other_testcase extends advanced_testcase {
         $page->set_pagetype('course-view-' . $course->format);
         $page->blocks->load_blocks();
         $page->blocks->add_block_at_end_of_default_region('rate_course');
+
+        // Restore into new course => records added.
         $newcourseid = restore_dbops::create_new_course('Tmp', 'tmp', 1);
         $bc = new backup_controller(
             backup::TYPE_1COURSE,
@@ -114,6 +116,7 @@ class block_rate_course_other_testcase extends advanced_testcase {
         unset($bc);
         $this->assertEquals(4, $DB->count_records('block_rate_course'));
 
+        // Restore into existing course => no records added.
         $bc = new backup_controller(
             backup::TYPE_1COURSE,
             $course->id,

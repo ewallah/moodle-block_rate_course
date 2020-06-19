@@ -49,7 +49,7 @@ before_install:
 
 install:
   - moodle-plugin-ci install
-  - npm install eslint-plugin-babel@latest --save-dev
+  - npm install eslint eslint-plugin-babel@latest --save-dev
 
 script:
   - moodle-plugin-ci phpunit --coverage-text --coverage-clover

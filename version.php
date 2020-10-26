@@ -21,17 +21,17 @@
  * @copyright  2009 Jenny Gray
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
- * Code was Rewritten for Moodle 2.X By Atar + Plus LTD for Comverse LTD.
+ * Code was rewritten for Moodle 2.X By Atar + Plus LTD for Comverse LTD.
  * @copyright  2011 Comverse LTD.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU Public License
  *
- * Code was Rewritten for Moodle 3.4 and sup by Pierre Duverneix.
+ * Code was rewritten for Moodle 3.4 and sup by Pierre Duverneix.
  * @copyright  2019 Pierre Duverneix.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU Public License
  *
  * Code was rewritten for Moodle 3.7+ by Renaat Debleu.
- * @copyright 2020 Renaat debleu <info@eWallah.net>
- * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @copyright  2020 Renaat debleu <info@eWallah.net>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 
 

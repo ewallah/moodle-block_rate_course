@@ -49,7 +49,7 @@ class block_rate_course_privacy_testcase extends provider_testcase {
     /**
      * Basic setup for these tests.
      */
-    public function setUp() {
+    public function setUp():void {
         global $DB;
         $this->resetAfterTest(true);
         $this->user = self::getDataGenerator()->create_user();

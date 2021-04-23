@@ -4,26 +4,16 @@ on: [push, pull_request]
 
 jobs:
   ci:
-    runs-on: ubuntu-18.04
-
-    services:
-      mariadb:
-        image: mariadb
-        env:
-          MYSQL_USER: 'root'
-          MYSQL_ALLOW_EMPTY_PASSWORD: "true"
-        options: --health-cmd="mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 3
-        ports:
-          - 3306:3306
+    runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
         moodle-branch: ['master', 'MOODLE_311_STABLE', 'MOODLE_310_STABLE', 'MOODLE_39_STABLE']
         php: ['7.4']
-        database: ['mariadb']
+        database: ['mysqli']
 
-    name: ${{ matrix.moodle-branch }}  php ${{ matrix.php }}  ${{ matrix.operating-system }}
+    name: ${{ matrix.moodle-branch }}  php ${{ matrix.php }}  ${{ matrix.database }}
 
     steps:
       - name: checkout plugin
@@ -35,24 +25,29 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: mbstring, pgsql, mysqli
-          tools: composer:v1, behat, phpunit:8.5.14, phpmd, phpcbf, phpcpd, psalm, phpcs
-          coverage: xdebug
+          extensions: mbstring, mysqli, gd, zip
 
-      - name: composer
+      - name: checkout moodle-plugin-ci
+        uses: actions/checkout@v2
+        with:
+          repository: moodlehq/moodle-plugin-ci
+          path: ci
+
+      - name: other
         run: |
-          composer create-project -n --no-dev --prefer-dist moodlehq/moodle-plugin-ci ci ^3
-          echo $(cd ci/bin; pwd) >> $GITHUB_PATH
-          echo $(cd ci/vendor/bin; pwd) >> $GITHUB_PATH
-          sudo apt install sshpass
-          sudo locale-gen en_AU.UTF-8
+           composer install
+           echo "$(cd bin; pwd)" >> $GITHUB_PATH
+           echo "$(cd vendor/bin; pwd)" >> $GITHUB_PATH
+           sudo locale-gen en_AU.UTF-8
+           sudo systemctl start mysql.service
+        working-directory: ci
 
       - name: install Moodle
-        run: moodle-plugin-ci install -v --db-host=127.0.0.1 --plugin this-plugin
+        run: moodle-plugin-ci --ansi install --db-user=root --db-pass=root --db-host=127.0.0.1 --plugin this-plugin
         env:
           DB: ${{ matrix.database }}
           MOODLE_BRANCH: ${{ matrix.moodle-branch }}
-
+      
       - name: phplint
         run: moodle-plugin-ci --ansi phplint
 
@@ -61,6 +56,9 @@ jobs:
 
       - name: phpmd
         run: moodle-plugin-ci --ansi phpmd
+
+      - name: phpdoc
+        run: moodle-plugin-ci --ansi phpdoc
 
       - name: codechecker
         run: moodle-plugin-ci --ansi codechecker
@@ -77,8 +75,16 @@ jobs:
       - name: grunt
         run: moodle-plugin-ci --ansi grunt
 
-      - name: phpunit
+      - name: phpunit 
         run: moodle-plugin-ci --ansi phpunit --coverage-text
 
       - name: firefox
-        run: moodle-plugin-ci --ansi behat --start-servers
+        run: moodle-plugin-ci --ansi behat
+      
+      - name: admin bookmarks
+        run: php admin/tool/behat/cli/run.php --tags=@block_admin_bookmarks
+        working-directory: moodle
+
+      - name: privacy
+        run: vendor/bin/phpunit --colors --no-coverage --testsuite tool_dataprivacy_testsuite,tool_policy_testsuite,core_privacy_testsuite
+        working-directory: moodle

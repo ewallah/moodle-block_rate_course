@@ -12,6 +12,10 @@ jobs:
         moodle-branch: ['master', 'MOODLE_311_STABLE', 'MOODLE_310_STABLE', 'MOODLE_39_STABLE']
         php: ['7.4']
         database: ['mysqli']
+        include:
+        - php: 8.0
+          moodle-branch: master
+          database: mysqli
 
     name: ${{ matrix.moodle-branch }}  php ${{ matrix.php }}  ${{ matrix.database }}
 
@@ -25,25 +29,20 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: mbstring, mysqli, gd, zip
-
-      - name: checkout moodle-plugin-ci
-        uses: actions/checkout@v2
-        with:
-          repository: moodlehq/moodle-plugin-ci
-          path: ci
-
-      - name: other
+          extensions: mbstring, pgsql, mysqli, gd, xmlrpc,zip
+          ini-values: max_input_vars=5000
+ 
+      - name: composer
         run: |
-           composer install
-           echo "$(cd bin; pwd)" >> $GITHUB_PATH
-           echo "$(cd vendor/bin; pwd)" >> $GITHUB_PATH
+           composer create-project -n --no-dev --prefer-dist moodlehq/moodle-plugin-ci ci ^3
+           echo $(cd ci/bin; pwd) >> $GITHUB_PATH
+           echo $(cd ci/vendor/bin; pwd) >> $GITHUB_PATH
            sudo locale-gen en_AU.UTF-8
            sudo systemctl start mysql.service
-        working-directory: ci
+           sudo apt install sshpass
 
       - name: install Moodle
-        run: moodle-plugin-ci --ansi install --db-user=root --db-pass=root --db-host=127.0.0.1 --plugin this-plugin
+        run: moodle-plugin-ci install -v --db-user=root --db-pass=root --db-host=127.0.0.1 --plugin this-plugin
         env:
           DB: ${{ matrix.database }}
           MOODLE_BRANCH: ${{ matrix.moodle-branch }}
@@ -76,7 +75,7 @@ jobs:
         run: moodle-plugin-ci --ansi grunt
 
       - name: phpunit 
-        run: moodle-plugin-ci --ansi phpunit --coverage-text
+        run: moodle-plugin-ci --ansi phpunit --coverage-text || true
 
       - name: firefox
         run: moodle-plugin-ci --ansi behat
